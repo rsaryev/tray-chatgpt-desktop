@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OpenAI Chat</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <webview
+      id="webview"
+      src="https://chat.openai.com/chat/"
+      tabindex="0"
+    ></webview>
+
+    <script>
+      const webview = document.getElementById("webview");
+
+      webview.addEventListener("dom-ready", () => {
+        webview.executeJavaScript(`
+          document.querySelector("textarea").addEventListener("keypress", (event) => {
+            if (event.shiftKey) {
+              return;
+            }
+
+            if (event.key === "Enter") {
+              event.preventDefault();
+
+              const xpath = "//*[@id='__next']/div[1]/div/main/div[2]/form/div/div[1]/button";
+              const button = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+              button.click();
+            }
+          });
+        `);
+      });
+    </script>
+  </body>
+</html>
