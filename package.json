@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "@electron-forge/maker-dmg": "^6.0.5",
+    "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
